@@ -12,7 +12,6 @@
 
 
 
-
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/recyclerView"-->
 <!--        android:layout_width="0dp"-->
@@ -75,6 +74,10 @@
         android:background="@drawable/menubkg"
         app:itemIconTint="@color/lavender"
         app:itemTextColor="@color/lavender"/>
+
+
+
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

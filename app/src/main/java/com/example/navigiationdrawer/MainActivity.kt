@@ -3,6 +3,8 @@ package com.example.navigiationdrawer
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,16 +15,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import androidx.recyclerview.widget.LinearLayoutManager
 
-
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var foodList : ArrayList<Food>
     private lateinit var foodAdapter: FoodAdapter
+    private val cartItems: MutableList<Food> = mutableListOf()
+    private lateinit var cartAdapter: CartAdapter // Create a CartAdapter for the cart
 
 //    val recyclerViewLayout = layoutInflater.inflate(R.layout.recycler_view_layout, null)
 //    val recyclerViewlist = recyclerViewLayout.findViewById<RecyclerView>(R.id.myRecyclerView)
+
+    data class CartItem(val food: Food, val quantity: Int)
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_cart -> Toast.makeText(this, "Delete selected", Toast.LENGTH_SHORT).show()
+            R.id.nav_favorite -> Toast.makeText(this, "Favorite selected", Toast.LENGTH_SHORT).show()
+            R.id.nav_third_item -> Toast.makeText(this, "Third item selected", Toast.LENGTH_SHORT).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,27 +85,45 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment()).commit()
+                .replace(R.id.fragment_container, PorcelainFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_home)
         }
 
     }
+//    // Add a function to add items to the cart.
+//    fun addToCart(food: Food, quantity: Int) {
+//        // Check if the item is already in the cart.
+//        val existingCartItem = cartItems.find { it.product == food }
+//        if (existingCartItem != null) {
+//            // If the item is already in the cart, update the quantity.
+//            existingCartItem.quantity += quantity
+//        } else {
+//            // If the item is not in the cart, add it.
+//            val cartItem = CartItem(food, quantity)
+//            cartItems.add(cartItem)
+//        }
+//        // Refresh the cart RecyclerView.
+//        // Implement this part to update the cart's RecyclerView with the new data.
+//    }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment()).commit()
+                .replace(R.id.fragment_container, PorcelainFragment()).commit()
             R.id.nav_settings -> supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, SettingsFragment()).commit()
+                .replace(R.id.fragment_container, CutleryFragment()).commit()
             R.id.nav_share -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, ShareFragment()).commit()
             R.id.nav_about -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AboutFragment()).commit()
+//            R.id.cart -> supportFragmentManager.beginTransaction()
+//                .replace(R.id.fragment_container, CartFragment()).commit()
             R.id.nav_logout -> Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
     override fun onBackPressed() {
+        super.onBackPressed()
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
@@ -99,5 +131,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
     }
+    // Function to add the selected product to the cart
+//    fun addToCart(view: View) {
+//        val quantityEditText = findViewById<EditText>(R.id.editText)
+//        val quantity = quantityEditText.text.toString().toIntOrNull() ?: 0 // Parse quantity from EditText
+//
+//        if (quantity > 0) {
+//            val food = intent.getParcelableExtra<Food>("food")
+//
+//            if (food != null) {
+//                food.quantity = quantity
+//                cartItems.add(food)
+//
+//                // Notify the cart adapter that data has changed
+//                cartAdapter.notifyDataSetChanged()
+//
+//                // Optionally, you can clear the quantity EditText:
+//                quantityEditText.text.clear()
+//            }
+//        }
+//    }
+
+
 
 }
+

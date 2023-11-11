@@ -10,20 +10,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-// TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ShareFragment.newInstance] factory method to
+ * Use the [SettingsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ShareFragment : Fragment() {
+class CutleryFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var foodList: ArrayList<Food>
     private lateinit var foodAdapter: FoodAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,13 +40,6 @@ class ShareFragment : Fragment() {
         foodList.add(Food(R.drawable.eternum_lyzeczka_do_herbaty, "Łyżeczka deserowa Eternum","Łyżeczka deserowa ze stali nierdzewnej 18/10 firmy Eternum, linia Sonate.", 0.40))
         foodList.add(Food(R.drawable.stolowa_eternum_sonate_lyzka, "Łyżka stołowa Eternum", "Łyżka stołowa ze stali 18/10 Eternum, linia Sonate", 0.40))
 
-        // Create another list of Food objects, let's call it otherFoodList
-        val otherFoodList = ArrayList<Food>()
-        otherFoodList.add(Food(R.drawable.aklogo1, "Another Food Item", "Description of another food item", 0.50))
-
-        // Add items from otherFoodList to foodList
-        foodList.addAll(otherFoodList)
-
         foodAdapter = FoodAdapter(foodList)
         recyclerView.adapter = foodAdapter
 
@@ -56,6 +49,7 @@ class ShareFragment : Fragment() {
 
             startActivity(intent)
         }
+
 
         Log.d("HomeFragment", "foodList size: ${foodList.size}")
         return view

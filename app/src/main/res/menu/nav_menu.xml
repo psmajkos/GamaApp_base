@@ -7,12 +7,12 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/baseline_home_24"
+            android:icon="@drawable/talerz_obiadowy_rak_karbon_28cm"
             android:title="Porcelana"/>
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/baseline_settings_24"
-            android:title="Settings"/>
+            android:src="@drawable/eternum_lyzeczka_do_herbaty"
+            android:title="Sztućce"/>
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/baseline_share_24"
@@ -21,6 +21,10 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/baseline_info_24"
             android:title="About Us"/>
+        <item
+            android:id="@+id/cart"
+            android:icon="@drawable/baseline_shopping_cart_24_wht"
+            android:title="Koszyk"/>
     </group>
     <item
         android:title="">
@@ -31,4 +35,5 @@
                 android:title="Logout"/>
         </menu>
     </item>
+
 </menu>
